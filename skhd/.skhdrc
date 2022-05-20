@@ -1,0 +1,85 @@
+# specify a file that should be included as an additional config-file
+# .load "/Users/Koe/.config/partial_skhdrc"
+# .load "partial_skhdrc"
+
+# prevents skhd from monitoring events for listed processes.
+.blacklist [
+	"terminal"
+]
+
+# definde default and command mode,using cmd - x switch to another
+:: default : yabai -m config normal_window_opacity 0.8; \
+  yabai -m config active_window_opacity 0.9
+:: command @ : yabai -m config normal_window_opacity 0.4; \
+  yabai -m config active_window_opacity 0.4
+ctrl - a ; command
+command < escape ; default
+
+# focus window
+command < h : yabai -m window --focus west
+command < j : yabai -m window --focus south
+command < k : yabai -m window --focus north
+command < l : yabai -m window --focus east
+
+# resize window
+command < shift - h : yabai -m window --resize left:-50:0 || yabai -m window --resize right:-50:0
+command < shift - l : yabai -m window --resize left:50:0 || yabai -m window --resize right:50:0
+command < shift - k : yabai -m window --resize top:0:-50 || yabai -m window --resize bottom:0:-50
+command < shift - j : yabai -m window --resize top:0:50 || yabai -m window --resize bottom:0:50
+
+# move window
+command < ctrl - k : yabai -m window --warp north || $(yabai -m window --display north; yabai -m display --focus north)
+command < ctrl - h : yabai -m window --warp west || $(yabai -m window --display west; yabai -m display --focus west)
+command < ctrl - j : yabai -m window --warp south || $(yabai -m window --display south; yabai -m display --focus south)
+command < ctrl - l : yabai -m window --warp east || $(yabai -m window --display east; yabai -m display --focus east)
+
+# move window to next desktop
+command < ctrl - p : yabai -m window --space prev || yabai -m window --space last
+command < ctrl - n : yabai -m window --space next || yabai -m window --space first
+
+
+# zoom window
+command < z : yabai -m window --toggle zoom-fullscreen
+command < shift -z : yabai -m window --toggle-parent
+
+# focus desktop(cycle)
+# command < p : (yabai -m space --focus prev || yabai -m space --focus last) && \
+#              index="${yabai -m query --spaces --space | jq '.windows[-1]'}" && \
+#              yabai -m window --focus 439
+command < p : yabai -m space --focus prev || yabai -m space --focus last
+command < n : yabai -m space --focus next || yabai -m space --focus first
+
+# .
+# command < m : yabai -m query --spaces --space recent | jq -r '.windows[-1] // empty' | xargs yabai -m window --focus
+# command < b : yabai -m window --focus mouse
+
+# change layout for current desktop
+command < ctrl - b : yabai -m space --layout bsp
+command < ctrl - f : yabai -m space --layout float
+
+
+# create desktop, move window and follow focus
+command < shift - 0x12 : yabai -m space --create && \
+                         index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+					               yabai -m window --space "${index}" && \
+					               yabai -m space --focus "${index}"
+
+# create desktop, follow focus
+command < c : yabai -m space --create && \
+              yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index // empty' | xargs yabai -m space --focus
+
+# destory desktop, shift - &
+command < shift - 0x1A : index="$(yabai -m query --spaces --space | jq '.index')" && \
+                         yabai -m space --focus recent && \
+												 yabai -m space "${index}" --destroy
+# destry window
+command < x : yabai -m window --close
+
+# float / unfloat window and center on screen
+command < f : yabai -m window --toggle float; \
+            yabai -m window --grid 4:4:1:1:2:2
+
+# lanunch app
+cmd - t : open -n /Applications/kitty.app
+cmd - g : open -n /Applications/Google\ Chrome.app
+

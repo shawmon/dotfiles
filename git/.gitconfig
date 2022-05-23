@@ -1,0 +1,6 @@
+[user]
+	name = shawmon
+	email = pengxiaomeng@outlook.com
+[core]
+	editor = vim
+	ignorecase = false

@@ -1,0 +1,96 @@
+########## oh-my-zsh configuration
+# Path
+dirpath=$(cd `dirname ~/.zshrc`; pwd)
+export ZSH="$dirpath/.oh-my-zsh"
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Theme
+# ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+
+# Plugins
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  themes
+  thefuck
+)
+
+source $ZSH/oh-my-zsh.sh
+
+
+########## User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# export LANG=en_US.UTF-8
+
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# nvim
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+export EDITOR='nvim'
+
+
+alias chrome-insecure="open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/pengxiaomeng/Documents/chromeDevData"
+
+# vscode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# if [[ ! $TERM =~ screen && -z $IS_VSCODE_INTEGRATED_TERMINAL ]]; then
+# tmux attach -t workspace || tmux new -s workspace;
+# fi
+
+# thefuck alias
+# eval $(thefuck --alias)
+
+# fix curosr to be blink vertical bar
+# echo -ne "\033[5 q"
+
+# PROMPT="%(?:%{$fg_bold[yellow]%}♠ :%{$fg_bold[red]%}♠ )%{$fg[cyan]%}%c %{$fg_bold[magenta]%}$ "
+# PROMPT+='%{$reset_color%}'
+
+
+# kitty icat
+alias icat="kitty +kitten icat"
+
+# sketchybar
+function brew() {
+  command brew "$@" 
+
+  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+    sketchybar --trigger brew_upgrade
+  fi
+}
+
+function mas() {
+  command mas "$@" 
+
+  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+    sketchybar --trigger brew_upgrade
+  fi
+}
+
+function push() {
+  command git push
+  sketchybar --trigger git_push
+}
+
+# bit.dev
+export PATH=$HOME/bin:$PATH

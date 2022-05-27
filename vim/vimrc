@@ -1,0 +1,130 @@
+source ./basic.vim
+
+call plug#begin('~/.vim/plugged')
+
+  Plug 'preservim/nerdcommenter'
+  " status bar
+  source ./airline.vim
+  Plug 'sheerun/vim-polyglot'
+  " Plug 'valloric/youcompleteme'
+  Plug 'skywind3000/asyncrun.vim'
+  " switch cursor while focus/blur
+  Plug 'sjl/vitality.vim'
+  " directory tree
+  Plug 'preservim/nerdtree'
+  " directory tree node icon
+  Plug 'ryanoasis/vim-devicons'
+  " directory tree node hightlight
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 
+  " directory tree node git status
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " auto set/unset paste while pasting
+  Plug 'ConradIrwin/vim-bracketed-paste'
+  source ./theme.vim
+  " scrollbar
+  source ./scrollbar.vim
+  " source ./vim-tmux-navigator.vim
+  source ./coc.vim
+  " VS Code Gitlens plugin
+  source ./blamer.vim
+call plug#end()
+
+if isdirectory(expand('~/.vim/plugged/nerdtree'))
+  augroup toggleNerdTree
+    autocmd!
+    " start NERDTreeToggleVCS when Vim is started without file arguments.
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTreeToggleVCS | endif
+  augroup END
+  " Hide dir arrow and delimiter
+  let g:NERDTreeDirArrowExpandable = "\u00a0"
+  let g:NERDTreeDirArrowCollapsible = "\u00a0"
+  let g:NERDTreeNodeDelimiter = "\x07"
+  " Set show hidden files by default
+  let NERDTreeShowHidden=1
+  " Create default mappings
+  let g:NERDCreateDefaultMappings = 1
+  " Add spaces after comment delimiters by default
+  let g:NERDSpaceDelims = 1
+  " Use compact syntax for prettified multi-line comments
+  let g:NERDCompactSexyComs = 1
+  " Align line-wise comment delimiters flush left instead of following code indentation
+  let g:NERDDefaultAlign = 'left'
+  " Set a language to use its alternate delimiters by default
+  let g:NERDAltDelims_java = 1
+  " Add your own custom formats or override the defaults
+  let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+  " Allow commenting and inverting empty lines (useful when commenting a region)
+  let g:NERDCommentEmptyLines = 1
+  " Enable trimming of trailing whitespace when uncommenting
+  let g:NERDTrimTrailingWhitespace = 1
+  " Enable NERDCommenterToggle to check all selected lines is commented or not
+  let g:NERDToggleCheckAllLines = 1
+endif
+
+if isdirectory(expand('~/.vim/plugged/vim-nerdtree-syntax-highlight'))
+  " disabledD default folder color
+  let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+  let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+  " let g:NERDTreeDisableFileExtensionHighlight = 1
+  " let g:NERDTreeDisableExactMatchHighlight = 1
+  " let g:NERDTreeDisablePatternMatchHighlight = 1
+ " enables folder icon highlighting using exact match
+  let g:NERDTreeFileExtensionHighlightFullName = 1
+  let g:NERDTreeExactMatchHighlightFullName = 1
+  let g:NERDTreePatternMatchHighlightFullName = 1
+  let g:NERDTreeHighlightFolders = 1
+  " highlights the folder name
+  let g:NERDTreeHighlightFoldersFullName = 1 
+endif
+
+if isdirectory(expand('~/.vim/plugged/nerdtree-git-plugin'))
+  let g:NERDTreeGitStatusIndicatorMapCustom = {
+                   \ 'Modified'  :'✹',
+                   \ 'Staged'    :'✚',
+                   \ 'Untracked' :'✭',
+                   \ 'Renamed'   :'➜',
+                   \ 'Unmerged'  :'═',
+                   \ 'Deleted'   :'✖',
+                   \ 'Dirty'     :'✗',
+                   \ 'Ignored'   :'☒',
+                   \ 'Clean'     :'✔︎',
+                   \ 'Unknown'   :'?',
+                   \ }
+  let g:NERDTreeGitStatusUseNerdFonts = 1
+  let g:NERDTreeGitStatusShowClean = 1
+endif
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+" Cursor settings:
+"  0 -> terminal default
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+let &t_SI .= "\<Esc>[5 q"
+let &t_SR .= "\<Esc>[3 q"
+let &t_EI .= "\<Esc>[2 q"
+augroup autocursor
+  autocmd!
+  autocmd VimLeave * silent !echo -ne "\033[5 q"
+  autocmd VimEnter * silent !echo -ne "\033[2 q"
+augroup END
+

@@ -3,6 +3,19 @@ local variables = {
 }
   
 local mappings = {
+   ["n:<leader>wK"] = {
+      function()
+         vim.cmd "WhichKey"
+      end,
+      " which-key all keymaps",
+   },
+   ["n:<leader>wk"] = {
+      function()
+         local input = vim.fn.input "WhichKey: "
+         vim.cmd("WhichKey " .. input)
+      end,
+      " which-key query lookup",
+   },
 }
   
 local autocmds = {

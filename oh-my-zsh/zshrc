@@ -94,3 +94,11 @@ function push() {
 
 # bit.dev
 export PATH=$HOME/bin:$PATH
+
+# 配置http访问的
+export https_proxy=http://127.0.0.1:7892
+# 配置https访问的
+export http_proxy=http://127.0.0.1:7892
+
+# 配置http和https访问
+export all_proxy=socks5://127.0.0.1:7891

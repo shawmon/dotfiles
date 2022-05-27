@@ -52,7 +52,9 @@ local bootstrap = function ()
     'which-key',
     'nvim-tree',
     --'tokyonight',
-    'gruvbox' }) do
+    'gruvbox',
+    'bufferline'
+  }) do
     components[name] = require('config.' .. name)
   end
   -- register variables

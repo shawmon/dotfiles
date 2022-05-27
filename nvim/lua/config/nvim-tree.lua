@@ -45,21 +45,12 @@ local variables = {
   ['opt:termguicolors@'] = true,
 }
 
--- highlight NvimTreeFolderIcon guibg=blue
-
 local mappings = {
-  ['n:<C-n>'] = {
-    '<cmd> NvimTreeToggle <CR>',
-    'toogle nvim tree'
-  },
-  ['n:<leader>r'] = {
-    '<cmd> NvimTreeRefresh <CR>',
-    'refresh nvim tree'
-  },
-  ['n:<leader>n'] = {
-    '<cmd> NvimTreeFindFile <CR>',
-    'find file on nvim tree'
-  }
+  -- toggle
+  ["n:<C-n>"] = { "<cmd> NvimTreeToggle <CR>", " toggle nvimtree" },
+
+  -- focus
+  ["n:<leader>e"] = { "<cmd> NvimTreeFocus <CR>", " focus nvimtree" },
   -- More available functions:
   -- NvimTreeOpen
   -- NvimTreeClose
@@ -192,6 +183,8 @@ local startup = function ()
       },
     },
   } -- END_DEFAULT_OPTS
+
+  vim.cmd[[highlight NvimTreeFolderIcon guibg=blue]]
 end
 
 local exports = {

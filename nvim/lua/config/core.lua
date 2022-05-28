@@ -172,6 +172,30 @@ local startup = function ()
         'williamboman/nvim-lsp-installer',
       }
     }
+
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+    }
+
+    use {
+      'L3MON4D3/LuaSnip'
+    }
+
+    use {
+      'rafamadriz/friendly-snippets',
+    }
+
+    use {
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-nvim-lsp', -- lsp
+        'hrsh7th/cmp-buffer', -- buffer word
+        'hrsh7th/cmp-path', -- paths
+        'hrsh7th/cmp-cmdline', -- command line
+      }
+    }
+
   end)
 end
 

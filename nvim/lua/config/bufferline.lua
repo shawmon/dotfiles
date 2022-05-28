@@ -20,8 +20,8 @@ local variables = {
 -- nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
 local mappings = {
   -- cycle through buffers
-  ["n:<TAB>"] = { "<cmd> BufferLineCycleNext <CR>", "  cycle next buffer" },
-  ["n:<S-Tab>"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
+  ["n:<C-n>"] = { "<cmd> BufferLineCycleNext <CR>", "  cycle next buffer" },
+  ["n:<C-p>"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
 
    -- close buffer
    ["n:<leader>x"] = {

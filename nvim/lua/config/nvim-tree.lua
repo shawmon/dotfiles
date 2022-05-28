@@ -47,7 +47,7 @@ local variables = {
 
 local mappings = {
   -- toggle
-  ["n:<C-n>"] = { "<cmd> NvimTreeToggle <CR>", " toggle nvimtree" },
+  ["n:<C-t>"] = { "<cmd> NvimTreeToggle <CR>", " toggle nvimtree" },
 
   -- focus
   ["n:<leader>e"] = { "<cmd> NvimTreeFocus <CR>", " focus nvimtree" },

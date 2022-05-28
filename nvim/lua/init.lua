@@ -57,6 +57,8 @@ local bootstrap = function ()
     'feline',
     'gitsigns',
     'toggleterm',
+    'telescope',
+    'indentline',
   }) do
     components[name] = require('config.' .. name)
   end

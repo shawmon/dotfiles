@@ -37,7 +37,7 @@ local variables = {
 
   -- Invisible char
   ['opt:list@'] = true,
-  ['opt:listchars@'] = 'tab:>-,trail:-',
+  -- ['opt:listchars@'] = 'tab:>-,trail:-',
 
   ['opt:confirm@'] = true, -- use dialog to comfirm
   ['opt:laststatus@'] = 3, -- global statusbar
@@ -153,6 +153,17 @@ local startup = function ()
     use {
       "akinsho/toggleterm.nvim",
       tag = 'v1.*'
+    }
+
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { 
+        'nvim-lua/plenary.nvim'
+      }
+    }
+
+    use {
+      'lukas-reineke/indent-blankline.nvim',
     }
   end)
 end

@@ -53,7 +53,9 @@ local bootstrap = function ()
     'nvim-tree',
     --'tokyonight',
     'gruvbox',
-    'bufferline'
+    'bufferline',
+    'feline',
+    'gitsigns',
   }) do
     components[name] = require('config.' .. name)
   end

@@ -18,8 +18,7 @@ local mappings = {
    },
 }
   
-local autocmds = {
-}
+local autocmds = {}
 
 local startup = function ()
   local whichkey = require 'which-key'

@@ -141,6 +141,14 @@ local startup = function ()
         'kyazdani42/nvim-web-devicons'
       }
     }
+
+    use {
+      'lewis6991/gitsigns.nvim',
+    }
+
+    use {
+      'feline-nvim/feline.nvim',
+    }
   end)
 end
 

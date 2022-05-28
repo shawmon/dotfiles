@@ -32,8 +32,7 @@ local mappings = {
  },
 }
 
-local autocmds = {
-}
+local autocmds = {}
 
 local startup = function ()
   require('bufferline').setup{

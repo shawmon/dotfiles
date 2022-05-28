@@ -10,14 +10,11 @@ local variables = {
   ['g:gruvbox_dark_sidebar@'] = false,
   -- ['g:gruvbox_sidebars@'] = { "qf", "vista_kind", "terminal", "packer" },
   ['g:gruvbox_sidebars@'] = {},
-
 }
 
-local mappings = {
-}
+local mappings = {}
 
-local autocmds = {
-}
+local autocmds = {}
 
 local startup = function ()
   vim.cmd[[colorscheme gruvbox-flat]]

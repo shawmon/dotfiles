@@ -5,11 +5,9 @@ local variables = {
   ['g:tokyonight_colors@'] = { hint = "orange", error = "#ff0000" },
 }
 
-local mappings = {
-}
+local mappings = {}
 
-local autocmds = {
-}
+local autocmds = {}
 
 local startup = function ()
   vim.cmd[[colorscheme tokyonight]]

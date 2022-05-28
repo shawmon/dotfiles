@@ -1,47 +1,4 @@
 local variables = {
-  ['g:nvim_tree_git_hl@'] = 1,
-  ['g:nvim_tree_highlight_opened_files@'] = 1,
-  ['g:nvim_tree_root_folder_modifier@'] = ':~',
-  ['g:nvim_tree_add_trailing@'] = 1,
-  ['g:nvim_tree_group_empty@'] = 1,
-  ['g:nvim_tree_icon_padding@'] = ' ',
-  ['g:nvim_tree_symlink_arrow@'] = ' >> ',
-  ['g:nvim_tree_respect_buf_cwd@'] = 1,
-  ['g:nvim_tree_create_in_closed_folder@'] = 1,
-  ['g:nvim_tree_special_files@'] = {
-    ['README.md'] = 1,
-    ['Makefile'] = 1,
-    ['MAKEFILE'] = 1,
-  },
-  ['g:nvim_tree_show_icons@'] = {
-    ['git'] = 1,
-    ['folders'] = 1,
-    ['files'] = 1 ,
-    ['folder_arrows'] = 1,
-  },
-  ['g:nvim_tree_icons@'] = {
-    ['default'] = '',
-    ['symlink'] = '',
-    ['git'] = {
-      ['unstaged'] = '✗',
-      ['staged'] = '✓',
-      ['unmerged'] = '',
-      ['renamed'] = '➜',
-      ['untracked'] = '★',
-      ['deleted'] = '',
-      ['ignored'] = '◌',
-    },
-    ['folder'] = {
-      ['arrow_open'] = '', 
-      ['arrow_closed'] = '',
-      ['default'] = '',
-      ['open'] = '',
-      ['empty'] = '',
-      ['empty_open'] = '',
-      ['symlink'] = '',
-      ['symlink_open'] = '',
-    },
-  },
   ['opt:termguicolors@'] = true,
 }
 
@@ -61,12 +18,12 @@ local mappings = {
   -- NvimTreeCollapseKeepBuffers
 }
 
-local autocmds = {
-}
+local autocmds = {}
 
 local startup = function ()
   require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     auto_reload_on_write = true,
+    create_in_closed_folder = false,
     disable_netrw = false,
     hijack_cursor = false,
     hijack_netrw = true,
@@ -75,18 +32,19 @@ local startup = function ()
     open_on_setup = false,
     open_on_setup_file = false,
     open_on_tab = false,
-    sort_by = 'name',
+    sort_by = "name",
     update_cwd = false,
     reload_on_bufenter = false,
+    respect_buf_cwd = false,
     view = {
       width = 30,
       height = 30,
       hide_root_folder = false,
-      side = 'left',
+      side = "left",
       preserve_window_proportions = false,
       number = false,
       relativenumber = false,
-      signcolumn = 'yes',
+      signcolumn = "yes",
       mappings = {
         custom_only = false,
         list = {
@@ -95,18 +53,55 @@ local startup = function ()
       },
     },
     renderer = {
+      add_trailing = true,
+      group_empty = false,
+      highlight_git = true,
+      highlight_opened_files = "none",
+      root_folder_modifier = ":~",
       indent_markers = {
         enable = false,
         icons = {
-          corner = '└ ',
-          edge = '│ ',
-          none = '  ',
+          corner = "└ ",
+          edge = "│ ",
+          none = "  ",
         },
       },
       icons = {
         webdev_colors = true,
-        git_placement = 'before',
+        git_placement = "before",
+        padding = " ",
+        symlink_arrow = " ➛ ",
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = true,
+          git = true,
+        },
+        glyphs = {
+          default = "",
+          symlink = "",
+          folder = {
+            arrow_closed = "",
+            arrow_open = "",
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+          git = {
+            unstaged = "✗",
+            staged = "✓",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "★",
+            deleted = "",
+            ignored = "◌",
+          },
+        },
       },
+      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
     },
     hijack_directories = {
       enable = true,
@@ -119,17 +114,17 @@ local startup = function ()
     },
     ignore_ft_on_setup = {},
     system_open = {
-      cmd = '',
+      cmd = "",
       args = {},
     },
     diagnostics = {
       enable = false,
       show_on_dirs = false,
       icons = {
-        hint = '',
-        info = '',
-        warning = '',
-        error = '',
+        hint = "",
+        info = "",
+        warning = "",
+        error = "",
       },
     },
     filters = {
@@ -154,20 +149,20 @@ local startup = function ()
         resize_window = true,
         window_picker = {
           enable = true,
-          chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
+          chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
           exclude = {
-            filetype = { 'notify', 'packer', 'qf', 'diff', 'fugitive', 'fugitiveblame' },
-            buftype = { 'nofile', 'terminal', 'help' },
+            filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+            buftype = { "nofile", "terminal", "help" },
           },
         },
       },
     },
     trash = {
-      cmd = 'trash',
+      cmd = "trash",
       require_confirm = true,
     },
     live_filter = {
-      prefix = '[FILTER]: ',
+      prefix = "[FILTER]: ",
       always_show_folders = true,
     },
     log = {

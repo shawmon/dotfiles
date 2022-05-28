@@ -149,6 +149,11 @@ local startup = function ()
     use {
       'feline-nvim/feline.nvim',
     }
+
+    use {
+      "akinsho/toggleterm.nvim",
+      tag = 'v1.*'
+    }
   end)
 end
 

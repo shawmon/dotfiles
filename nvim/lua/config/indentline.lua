@@ -1,7 +1,4 @@
-
---[[
-  @see https://github.com/lukas-reineke/indent-blankline.nvim
---]]
+-- See https://github.com/lukas-reineke/indent-blankline.nvim
 local variables = {
   ['opt:list@'] = true,
   -- ['opt:listchars@append'] = "space:⋅",

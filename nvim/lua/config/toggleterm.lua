@@ -1,7 +1,4 @@
---[[
--- @see https://github.com/akinsho/toggleterm.nvim
---]]
-
+-- See https://github.com/akinsho/toggleterm.nvim
 local variables = {}
 
 local function termcodes(str)

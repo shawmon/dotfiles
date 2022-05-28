@@ -1,6 +1,4 @@
---[[
-  @see https://github.com/lewis6991/gitsigns.nvim
---]]
+-- See https://github.com/lewis6991/gitsigns.nvim
 local variables = {}
 
 local mappings = {}

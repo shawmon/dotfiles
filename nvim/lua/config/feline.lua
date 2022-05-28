@@ -1,7 +1,4 @@
-
---[[
-  @see https://github.com/feline-nvim/feline.nvim
---]]
+-- See https://github.com/feline-nvim/feline.nvim
 local variables = {}
 
 local mappings = {}

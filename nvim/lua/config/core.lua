@@ -165,6 +165,13 @@ local startup = function ()
     use {
       'lukas-reineke/indent-blankline.nvim',
     }
+
+    use {
+      'neovim/nvim-lspconfig',
+      requires = {
+        'williamboman/nvim-lsp-installer',
+      }
+    }
   end)
 end
 

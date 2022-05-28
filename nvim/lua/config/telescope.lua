@@ -1,6 +1,4 @@
---[[
-  @see https://github.com/nvim-telescope/telescope.nvim
---]]
+-- See https://github.com/nvim-telescope/telescope.nvim
 local variables = {}
 
 local mappings = {

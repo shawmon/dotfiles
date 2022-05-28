@@ -59,6 +59,7 @@ local bootstrap = function ()
     'toggleterm',
     'telescope',
     'indentline',
+    'lspconfig',
   }) do
     components[name] = require('config.' .. name)
   end

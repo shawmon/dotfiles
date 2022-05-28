@@ -1,6 +1,4 @@
---[[
-  @see https://github.com/eddyekofo94/gruvbox-flat.nvim
---]]
+-- See https://github.com/eddyekofo94/gruvbox-flat.nvim
 local variables = {
   ['g:gruvbox_flat_style@'] = 'dark',
   ['g:gruvbox_transparent@'] = false,

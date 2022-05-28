@@ -1,6 +1,4 @@
---[[
-  @see https://github.com/akinsho/bufferline.nvim
---]]
+-- See https://github.com/akinsho/bufferline.nvim
 local variables = {
   ['opt:termguicolors@'] = true
 }

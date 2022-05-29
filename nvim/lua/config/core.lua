@@ -199,6 +199,10 @@ local startup = function()
     use {
       'windwp/nvim-autopairs'
     }
+
+    use {
+      'ray-x/lsp_signature.nvim'
+    }
   end)
 end
 

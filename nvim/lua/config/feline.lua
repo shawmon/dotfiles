@@ -6,8 +6,10 @@ local mappings = {}
 local autocmds = {}
 
 local startup = function ()
+  local transparent = vim.g.gruvbox_transparent
   local colors = {
-    bg = "#1F1F23",
+    -- bg = "#1F1F23",
+    bg = transparent and "none" or "#1f1f23",
     oceanblue = "#a9b665",
     skyblue = '#a96b2c',
     black = "#1B1B1B",
@@ -37,5 +39,5 @@ local exports = {
   autocmds = autocmds,
   startup = startup,
 }
-  
+
 return exports

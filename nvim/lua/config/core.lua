@@ -195,7 +195,10 @@ local startup = function()
         'hrsh7th/cmp-cmdline', -- command line
       }
     }
-    
+
+    use {
+      'windwp/nvim-autopairs'
+    }
   end)
 end
 

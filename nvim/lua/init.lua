@@ -62,6 +62,7 @@ local bootstrap = function()
     'lspconfig',
     'treesitter',
     'cmp',
+    'autopairs',
   } do
     components[name] = require('config.' .. name)
   end

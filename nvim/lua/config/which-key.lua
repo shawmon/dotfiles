@@ -17,7 +17,7 @@ local mappings = {
       " which-key query lookup",
    },
 }
-  
+
 local autocmds = {}
 
 local startup = function ()

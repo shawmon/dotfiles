@@ -49,7 +49,7 @@ local variables = {
   ['opt:termguicolors@'] = true,
 
   -- leader
-  ['g:mapleader@'] = '.'
+  ['g:mapleader@'] = ' ',
 }
 
 local mappings = {
@@ -66,7 +66,7 @@ local mappings = {
   ['i:<Down>'] = { '<Nop>', 'disable <Down>' },
   ['i:<Left>'] = { '<Nop>', 'disable <Left>' },
   ['i:<Right>'] = { '<Nop>', 'disable <Right>' },
-  -- insert 模式下使用 Ctrl + hjkl 移动光标 
+  -- insert 模式下使用 Ctrl + hjkl 移动光标
   ['i:<C-h>'] = { '<Left>', 'cursor left' },
   ['i:<C-l>'] = { '<Right>', 'cursor right' },
   ['i:<C-j>'] = { '<Down>', 'cursor down' },
@@ -86,19 +86,19 @@ local mappings = {
 }
 
 local autocmds = {
--- autocmd BufWritePost plugins.lua source <afile> | PackerSync
--- local utils = require 'core.utils'
--- utils.autocmd({
---  event = 'BufWritePost',
---  pattern = 'packer.lua',
---  callback = function ()
---    vim.api.nvim_command('source <afile>')
---    vim.api.nvim_command('PackerSync')
---  end,
---})
+  -- autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  -- local utils = require 'core.utils'
+  -- utils.autocmd({
+  --  event = 'BufWritePost',
+  --  pattern = 'packer.lua',
+  --  callback = function ()
+  --    vim.api.nvim_command('source <afile>')
+  --    vim.api.nvim_command('PackerSync')
+  --  end,
+  --})
 }
 
-local startup = function ()
+local startup = function()
   local packer = require 'packer'
 
   packer.init({
@@ -157,7 +157,7 @@ local startup = function ()
 
     use {
       'nvim-telescope/telescope.nvim',
-      requires = { 
+      requires = {
         'nvim-lua/plenary.nvim'
       }
     }
@@ -195,7 +195,7 @@ local startup = function ()
         'hrsh7th/cmp-cmdline', -- command line
       }
     }
-
+    
   end)
 end
 

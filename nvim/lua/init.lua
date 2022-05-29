@@ -1,4 +1,4 @@
-local registerVariables = function (variables)
+local registerVariables = function(variables)
   if not variables then
     return
   end
@@ -15,7 +15,7 @@ local registerVariables = function (variables)
   end
 end
 
-local registerMappings = function (mappings)
+local registerMappings = function(mappings)
   if not mappings then
     return
   end
@@ -28,7 +28,7 @@ local registerMappings = function (mappings)
   end
 end
 
-local registerAutocmds = function (autocmds)
+local registerAutocmds = function(autocmds)
   if not autocmds then
     return
   end
@@ -36,7 +36,7 @@ local registerAutocmds = function (autocmds)
   -- TODO: 绑定自动任务
 end
 
-local startupComponent = function (startup)
+local startupComponent = function(startup)
   if not startup then
     return
   end
@@ -44,10 +44,10 @@ local startupComponent = function (startup)
   startup()
 end
 
-local bootstrap = function ()
+local bootstrap = function()
   local components = {}
   -- load components
-  for _, name in pairs({
+  for _, name in pairs{
     'core',
     'which-key',
     'nvim-tree',
@@ -62,29 +62,29 @@ local bootstrap = function ()
     'lspconfig',
     'treesitter',
     'cmp',
-  }) do
+  } do
     components[name] = require('config.' .. name)
   end
   -- register variables
-  for name, component in pairs(components) do
+  for _, component in pairs(components) do
     registerVariables(component.variables)
   end
   -- register mappings
-  for name, component in pairs(components) do
+  for _, component in pairs(components) do
     registerMappings(component.mappings)
   end
   -- register autocmds
-  for name, component in pairs(components) do
+  for _, component in pairs(components) do
     registerAutocmds(component.autocmds)
   end
   -- startup component
-  for name, component in pairs(components) do
+  for _, component in pairs(components) do
     startupComponent(component.startup)
   end
 
 end
 
-local install = function ()
+local install = function()
   local fn = vim.fn
   local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 

@@ -1,4 +1,8 @@
 local variables = {
+  -- Emulate Normal Text Editor
+  -- ['opt:insertmode@'] = true,
+  -- ['opt:selectmode@'] = 'mouse',
+
   -- Numberline
   ['opt:number@'] = true,
   ['opt:relativenumber@'] = true,
@@ -48,41 +52,42 @@ local variables = {
   ['opt:splitright@'] = true,
   ['opt:termguicolors@'] = true,
 
+  -- Bottom & Status Bar
+  ['opt:showmode@'] = true,
+  ['opt:showcmd@'] = true,
+
+
   -- leader
   ['g:mapleader@'] = ' ',
 }
 
 local mappings = {
-  -- test
-  ['n:<leader>n'] = { '<cmd> set nu! <CR>', 'toggle number option' },
-  ['n:<leader>rn'] = { '<cmd> set rnu! <CR>', 'toggle relativenumber option' },
-
   -- disable arrow
-  ['n:<Up>'] = { '<Nop>', 'disable <Up>' },
-  ['n:<Down>'] = { '<Nop>', 'disable <Down>' },
-  ['n:<Left>'] = { '<Nop>', 'disable <Left>' },
-  ['n:<Right>'] = { '<Nop>', 'disable <Right>' },
-  ['i:<Up>'] = { '<Nop>', 'disable <Up>' },
-  ['i:<Down>'] = { '<Nop>', 'disable <Down>' },
-  ['i:<Left>'] = { '<Nop>', 'disable <Left>' },
-  ['i:<Right>'] = { '<Nop>', 'disable <Right>' },
+  ['n:<Up>'] = { '<Nop>', '[core] disable <Up>' },
+  ['n:<Down>'] = { '<Nop>', '[core] disable <Down>' },
+  ['n:<Left>'] = { '<Nop>', '[core] disable <Left>' },
+  ['n:<Right>'] = { '<Nop>', '[core] disable <Right>' },
+  ['i:<Up>'] = { '<Nop>', '[core] disable <Up>' },
+  ['i:<Down>'] = { '<Nop>', '[core] disable <Down>' },
+  ['i:<Left>'] = { '<Nop>', '[core] disable <Left>' },
+  ['i:<Right>'] = { '<Nop>', '[core] disable <Right>' },
   -- insert 模式下使用 Ctrl + hjkl 移动光标
-  ['i:<C-h>'] = { '<Left>', 'cursor left' },
-  ['i:<C-l>'] = { '<Right>', 'cursor right' },
-  ['i:<C-j>'] = { '<Down>', 'cursor down' },
-  ['i:<C-k>'] = { '<Up>', 'cursor up' },
+  ['i:<C-h>'] = { '<Left>', '[core] cursor left' },
+  ['i:<C-l>'] = { '<Right>', '[core] cursor right' },
+  ['i:<C-j>'] = { '<Down>', '[core] cursor down' },
+  ['i:<C-k>'] = { '<Up>', '[core] cursor up' },
 
   -- switch between windows
-  ['n:<C-h>'] = { '<C-w>h', ' window left' },
-  ['n:<C-l>'] = { '<C-w>l', ' window right' },
-  ['n:<C-j>'] = { '<C-w>j', ' window down' },
-  ['n:<C-k>'] = { '<C-w>k', ' window up' },
+  ['n:<C-h>'] = { '<C-w>h', '[core] window left' },
+  ['n:<C-l>'] = { '<C-w>l', '[core] window right' },
+  ['n:<C-j>'] = { '<C-w>j', '[core] window down' },
+  ['n:<C-k>'] = { '<C-w>k', '[core] window up' },
 
   -- save
-  ['n:<C-s>'] = { '<cmd> w <CR>', '﬚ save file' },
+  ['n:<C-s>'] = { '<cmd> w <CR>', '[core] save file' },
 
   -- Copy all
-  ['n:<C-c>'] = { '<cmd> %y+ <CR>', ' copy whole file' },
+  ['n:<C-c>'] = { '<cmd> %y+ <CR>', '[core] copy whole file' },
 }
 
 local autocmds = {

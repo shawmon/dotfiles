@@ -2,9 +2,9 @@
 local variables = {}
 
 local mappings = {
-  ['n:<leader>ff'] = { '<cmd>Telescope find_files<cr>', 'find files' },
-  ['n:<leader>fb'] = { '<cmd>Telescope buffers<cr>', 'find buffers' },
-  ['n:<leader>fg'] = { '<cmd>Telescope live_grep<cr>', 'live grep' },
+  ['n:<leader>ff'] = { '<cmd>Telescope find_files<cr>', '[telescope] find files' },
+  ['n:<leader>fb'] = { '<cmd>Telescope buffers<cr>', '[telescope] find buffers' },
+  ['n:<leader>lg'] = { '<cmd>Telescope live_grep<cr>', '[telescope] live grep' },
 }
 
 local autocmds = {}

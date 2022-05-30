@@ -6,8 +6,8 @@ local function termcodes(str)
 end
 
 local mappings = {
-  ["n:<C-t>"] = { "<cmd> ToggleTerm <CR>", "toggle terminal window" },
-  ["t:<C-t>"] = { "<cmd> ToggleTerm <CR>", "toggle terminal window" },
+  ["n:<C-t>"] = { "<cmd> ToggleTerm <CR>", "[toggleterm] toggle terminal window" },
+  ["t:<C-t>"] = { "<cmd> ToggleTerm <CR>", "[toggleterm] toggle terminal window" },
  --  ["t:<C-x>"] = { termcodes "<C-\\><C-N>", "  escape terminal mode" },
 }
 

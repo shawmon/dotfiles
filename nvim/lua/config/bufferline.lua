@@ -17,15 +17,15 @@ local variables = {
 -- nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
 local mappings = {
   -- cycle through buffers
-  ["n:<C-n>"] = { "<cmd> BufferLineCycleNext <CR>", "  cycle next buffer" },
-  ["n:<C-p>"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
+  ["n:<C-n>"] = { "<cmd> BufferLineCycleNext <CR>", "[bufferline] cycle next" },
+  ["n:<C-p>"] = { "<cmd> BufferLineCyclePrev <CR>", "[bufferline] cycle prev" },
 
    -- close buffer
    ["n:<leader>x"] = {
     function()
       vim.cmd(":bp | bd " .. vim.fn.bufnr())
     end,
-    "  close buffer",
+    "[bufferline] close buffer",
  },
 }
 

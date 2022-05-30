@@ -2,17 +2,18 @@
 local variables = {}
 local mappings = {
   -- diagnostic
-  ['n:<space>e'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'diagnostic: open float' },
-  ['n:[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'diagnostic:  goto prev' },
-  ['n:]d'] = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'diagnostic: goto next' },
-  ['n:<space>q'] = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'diagnostic: setloclist' },
+  ['n:<leader>df'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', '[lsp] diagnostic open float' },
+  ['n:<leader>dp'] = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', '[lsp] diagnostic goto prev' },
+  ['n:<leader>dn'] = { '<cmd>lua vim.diagnostic.goto_next()<CR>', '[lsp] diagnostic goto next' },
+  ['n:<leader>ds'] = { '<cmd>lua vim.diagnostic.setloclist()<CR>', '[lsp] diagnostic set loc list' },
 }
 
 local autocmds = {}
 
-local startup = function ()
+local startup = function()
   require("nvim-lsp-installer").setup({
-    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    automatic_installation = true,
+    -- automatically detect which servers to install (based on which servers are set up via lspconfig)
     ui = {
       icons = {
         server_installed = "✓",
@@ -20,26 +21,20 @@ local startup = function ()
         server_uninstalled = "✗",
       },
     },
+    -- LspInstallInfo window's mappings
     keymaps = {
-      -- Keymap to expand a server in the UI
-      toggle_server_expand = "<CR>",
-      -- Keymap to install the server under the current cursor position
-      install_server = "i",
-      -- Keymap to reinstall/update the server under the current cursor position
-      update_server = "u",
-      -- Keymap to check for new version for the server under the current cursor position
-      check_server_version = "c",
-      -- Keymap to update all installed servers
-      update_all_servers = "U",
-      -- Keymap to check which installed servers are outdated
-      check_outdated_servers = "C",
-      -- Keymap to uninstall a server
-      uninstall_server = "X",
+      toggle_server_expand = "<CR>", -- collapse or expand info
+      install_server = "i", -- install server
+      update_server = "u", -- update server
+      check_server_version = "c", -- check server version
+      update_all_servers = "U", -- update all installed servers
+      check_outdated_servers = "C", -- check which installed servers are outdated
+      uninstall_server = "X", -- uninstall server
     },
   })
 
   -- Use an on_attach function to only map the following keys
-  -- after the language server attaches to the current buffer
+  -- after the anguage server attaches to the current buffer
   local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -51,19 +46,20 @@ local startup = function ()
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     whichkey.register({
-      ['gd'] = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp: definition' },
-      ['gD'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'lsp: declaration' },
-      ['K'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'lsp: hover' },
-      ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'lsp: implementation' },
-      ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'lsp: signature help' },
-      ['<space>wa'] = { 'cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'lsp: add workspace folder' },
-      ['<space>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'lsp: remove workspace folder' },
-      ['<space>wl'] = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'lsp: list workspace folder' },
-      ['<space>D'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'lsp: type definition' },
-      ['<space>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'lsp: rename' },
-      ['<space>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp: code action' },
-      ['gr'] = { '<cmd>lua vim.lsp.buf.references()<CR>', 'lsp: references' },
-      ['<space>f'] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'lsp: formatting' },
+      ['gd'] = { '<cmd>lua vim.lsp.buf.definition()<CR>', '[lsp] definition' }, -- goto definition
+      ['gD'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', '[lsp] declaration' }, -- goto declaration
+      ['gr'] = { '<cmd>lua vim.lsp.buf.references()<CR>', '[lsp] references' }, -- goto references
+      ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', '[lsp] implementation' }, -- goto implementation
+
+      ['<leader>hv'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', '[lsp] hover' }, -- hove to display type
+      ['<leader>sh'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', '[lsp] signature help' },
+      ['<leader>wa'] = { 'cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', '[lsp] add workspace folder' },
+      ['<leader>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', '[lsp] remove workspace folder' },
+      ['<leader>wl'] = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', '[lsp] list workspace folders' },
+      ['<leader>td'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', '[lsp] type definition' },
+      ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', '[lsp] rename' },
+      ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', '[lsp] code action' },
+      ['<leader>fm'] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', '[lsp] formatting' },
     }, opt)
   end
 
@@ -114,7 +110,7 @@ local startup = function ()
   end
 
 
-  require'nvim-treesitter.configs'.setup {
+  require 'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all"
     ensure_installed = { "tsx", "typescript", "javascript", "css", "scss", "lua" },
 

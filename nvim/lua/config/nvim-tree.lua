@@ -7,7 +7,7 @@ local mappings = {
   ["n:<C-b>"] = { "<cmd> NvimTreeToggle <CR>", "[nvimtree] toggle nvimtree" },
 
   -- focus
-  ["n:<C-f>"] = { "<cmd> NvimTreeFocus <CR>", "[nvimtree] focus nvimtree" },
+  ["n:<C-f>"] = { "<cmd> NvimTreeRefresh <CR>", "[nvimtree] refresh nvimtree" },
   -- More available functions:
   -- NvimTreeOpen
   -- NvimTreeClose

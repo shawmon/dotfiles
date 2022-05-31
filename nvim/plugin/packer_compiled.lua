@@ -189,6 +189,16 @@ _G.packer_plugins = {
     path = "/Users/luofu/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-barbaric"] = {
+    loaded = true,
+    path = "/Users/luofu/.local/share/nvim/site/pack/packer/start/vim-barbaric",
+    url = "https://github.com/rlue/vim-barbaric"
+  },
+  ["vim-xkbswitch"] = {
+    loaded = true,
+    path = "/Users/luofu/.local/share/nvim/site/pack/packer/start/vim-xkbswitch",
+    url = "https://github.com/lyokha/vim-xkbswitch"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/Users/luofu/.local/share/nvim/site/pack/packer/start/which-key.nvim",

@@ -62,7 +62,7 @@ local variables = {
 }
 
 local mappings = {
-  -- disable arrow
+  -- Disable arrow
   ['n:<Up>'] = { '<Nop>', '[core] disable <Up>' },
   ['n:<Down>'] = { '<Nop>', '[core] disable <Down>' },
   ['n:<Left>'] = { '<Nop>', '[core] disable <Left>' },
@@ -71,23 +71,24 @@ local mappings = {
   ['i:<Down>'] = { '<Nop>', '[core] disable <Down>' },
   ['i:<Left>'] = { '<Nop>', '[core] disable <Left>' },
   ['i:<Right>'] = { '<Nop>', '[core] disable <Right>' },
-  -- insert 模式下使用 Ctrl + hjkl 移动光标
+  -- Insert 模式下使用 Ctrl + hjkl 移动光标
   ['i:<C-h>'] = { '<Left>', '[core] cursor left' },
   ['i:<C-l>'] = { '<Right>', '[core] cursor right' },
   ['i:<C-j>'] = { '<Down>', '[core] cursor down' },
   ['i:<C-k>'] = { '<Up>', '[core] cursor up' },
 
-  -- switch between windows
+  -- Switch between windows
   ['n:<C-h>'] = { '<C-w>h', '[core] window left' },
   ['n:<C-l>'] = { '<C-w>l', '[core] window right' },
   ['n:<C-j>'] = { '<C-w>j', '[core] window down' },
   ['n:<C-k>'] = { '<C-w>k', '[core] window up' },
 
-  -- save
+  -- Save & Copy all
   ['n:<C-s>'] = { '<cmd> w <CR>', '[core] save file' },
-
-  -- Copy all
   ['n:<C-c>'] = { '<cmd> %y+ <CR>', '[core] copy whole file' },
+
+  -- Quick Escape
+  ['i:<C-e>'] = { '<Esc>', '[core] quick escape' },
 }
 
 local autocmds = {
@@ -207,6 +208,10 @@ local startup = function()
 
     use {
       'ray-x/lsp_signature.nvim'
+    }
+
+    use {
+      'rlue/vim-barbaric'
     }
   end)
 end

@@ -1,11 +1,37 @@
--- See https://github.com/hrsh7th/nvim-cmp
-local variables = {}
-local mappings = {}
+-- https://github.com/hrsh7th/nvim-cmp
+return {
+  'hrsh7th/nvim-cmp',
+  requires = {
+    'hrsh7th/cmp-nvim-lsp', -- lsp
+    'hrsh7th/cmp-buffer', -- buffer word
+    'hrsh7th/cmp-path', -- paths
+    'hrsh7th/cmp-cmdline', -- command line
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+  },
+  config = function()
+    local cmp = require 'cmp'
 
-local autocmds = {}
+    local function border(hl_name)
+      return {
+        { "╭", hl_name },
+        { "─", hl_name },
+        { "╮", hl_name },
+        { "│", hl_name },
+        { "╯", hl_name },
+        { "─", hl_name },
+        { "╰", hl_name },
+        { "│", hl_name },
+      }
+    end
+  local cmp_window = require "cmp.utils.window"
 
-local startup = function()
-  local cmp = require 'cmp'
+  cmp_window.info_ = cmp_window.info
+  cmp_window.info = function(self)
+    local info = self:info_()
+    info.scrollable = false
+    return info
+  end
 
   cmp.setup({
     snippet = {
@@ -20,7 +46,57 @@ local startup = function()
     window = {
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
+      completion = {
+        border = border "CmpBorder",
+        winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+     },
+     documentation = {
+        border = border "CmpDocBorder",
+     },
     },
+    formatting = {
+      format = function(_, vim_item)
+        local icons = {
+          Text = "",
+          Method = "",
+          Function = "",
+          Constructor = "",
+          Field = "ﰠ",
+          Variable = "",
+          Class = "ﴯ",
+          Interface = "",
+          Module = "",
+          Property = "ﰠ",
+          Unit = "塞",
+          Value = "",
+          Enum = "",
+          Keyword = "",
+          Snippet = "",
+          Color = "",
+          File = "",
+          Reference = "",
+          Folder = "",
+          EnumMember = "",
+          Constant = "",
+          Struct = "פּ",
+          Event = "",
+          Operator = "",
+          TypeParameter = "",
+          Table = " ",
+          Object = "",
+          Tag = " ",
+          Array = " ",
+          Boolean = "蘒",
+          Number = "",
+          String = "",
+          Calendar = " ",
+          Watch = "",
+        }
+         vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+
+         return vim_item
+      end,
+   },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -63,7 +139,7 @@ local startup = function()
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'luasnip' }
+      { name = 'luasnip' },
       { name = "buffer" },
       { name = "path" },
       -- { name = 'vsnip' }, -- For vsnip users.
@@ -106,13 +182,5 @@ local startup = function()
   -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
   --   capabilities = capabilities
   -- }
-end
-
-local exports = {
-  variables = variables,
-  mappings = mappings,
-  autocmds = autocmds,
-  startup = startup,
+  end
 }
-
-return exports

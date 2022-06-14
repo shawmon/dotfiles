@@ -1,106 +1,63 @@
-local registerVariables = function(variables)
-  if not variables then
-    return
-  end
-  for name, variableValue in pairs(variables) do
-    local variableType, variableName, variableOpt = string.match(name, '^(.*):(.*)@(.*)$')
-    local target = vim[variableType and variableType or 'opt']
-    if variableOpt == 'append' then
-      target[variableName]:append(variableValue)
-    elseif variableOpt == 'prepend' then
-      target[variableName]:prepend(variableValue)
-    else
-      target[variableName] = variableValue
+Core = {
+  set = function(list)
+    if not list then
+      return
     end
-  end
+    for _, option in pairs(list) do
+      local type = option.type or 'option'
+      local oper = option.oper or 'asign'
+
+      local target = vim[type == 'variable' and 'g' or 'opt']
+      if oper == 'append' then
+        target[option.name]:append(option.value)
+      elseif oper == 'prepend' then
+        target[option.name]:prepend(option.value)
+      else
+        target[option.name] = option.value
+      end
+    end
+  end,
+  map = function(list)
+    if not list then
+      return
+    end
+
+    local whichkey = require 'which-key'
+
+    for _, mapping in pairs(list) do
+      local mode = mapping.mode or 'n'
+      whichkey.register({ [mapping.key] = { mapping.action, mapping.desc } }, { mode = mode });
+    end
+  end,
+}
+
+local fn = vim.fn
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
+  print "Packer cloned successfully!"
 end
 
-local registerMappings = function(mappings)
-  if not mappings then
-    return
-  end
-
-  local whichkey = require 'which-key'
-
-  for name, mappingValue in pairs(mappings) do
-    local mappingMode, mappingKey = string.match(name, '^(.*):(.*)$')
-    whichkey.register({ [mappingKey] = mappingValue }, { mode = mappingMode });
-  end
-end
-
-local registerAutocmds = function(autocmds)
-  if not autocmds then
-    return
-  end
-
-  -- TODO: 绑定自动任务
-end
-
-local startupComponent = function(startup)
-  if not startup then
-    return
-  end
-
-  startup()
-end
-
-local bootstrap = function()
-  local components = {}
-  -- load components
-  for _, name in pairs{
-    'core',
-    'which-key',
-    'nvim-tree',
-    --'tokyonight',
-    'gruvbox',
-    'bufferline',
-    'feline',
-    'gitsigns',
-    'toggleterm',
-    'telescope',
-    'indentline',
-    'lspconfig',
-    'treesitter',
-    'cmp',
-    'autopairs',
-  } do
-    components[name] = require('config.' .. name)
-  end
-  -- register variables
-  for _, component in pairs(components) do
-    registerVariables(component.variables)
-  end
-  -- register mappings
-  for _, component in pairs(components) do
-    registerMappings(component.mappings)
-  end
-  -- register autocmds
-  for _, component in pairs(components) do
-    registerAutocmds(component.autocmds)
-  end
-  -- startup component
-  for _, component in pairs(components) do
-    startupComponent(component.startup)
-  end
-
-end
-
-local install = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-
-  if fn.empty(fn.glob(install_path)) > 0 then
-    print "Cloning packer ..."
-
-    fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
-
-    print "Packer cloned successfully!"
-
-    vim.cmd "packadd packer.nvim"
-
-    vim.cmd "packerSync"
-  end
-end
-
-install()
-bootstrap()
+require('packer').startup({
+  function(use)
+    -- local config_files = vim.split(vim.fn.glob('~/.config/nvim/lua/config/*lua'), '\n')
+    local config_files = vim.fn.readdir(vim.fn.stdpath('config') ..'/lua/plugins', [[v:val =~ '\.lua$']])
+    for _, file in pairs(config_files) do
+      local plugin = require('plugins.' .. file:gsub('%.lua$', ''))
+      if plugin then
+        use(plugin)
+      end
+    end
+    if packer_bootstrap then
+      require('packer').sync()
+    end
+  end,
+  config = {
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    },
+  },
+})

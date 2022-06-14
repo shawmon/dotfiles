@@ -30,7 +30,7 @@ return {
     })
 
     local whichkey = require 'which-key'
-    local options = { 
+    local options = {
       icons = {
         breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
         separator = '  ', -- symbol used between a key and it's label
@@ -47,7 +47,7 @@ return {
         spacing = 6, -- spacing between columns
       },
       hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' },
-  
+
       triggers_blacklist = {
         -- list of mode / prefixes that should never be hooked by WhichKey
         i = { 'j', 'k' },

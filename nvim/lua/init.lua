@@ -26,7 +26,7 @@ Core = {
 
     for _, mapping in pairs(list) do
       local mode = mapping.mode or 'n'
-      whichkey.register({ [mapping.key] = { mapping.action, mapping.desc } }, { mode = mode });
+      whichkey.register({ [mapping.key] = { mapping.action, mapping.desc } }, { mode = mode, buffer = mapping.buffer });
     end
   end,
 }

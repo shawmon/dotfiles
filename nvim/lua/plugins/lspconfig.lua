@@ -8,6 +8,33 @@ return {
   },
   run = ':TSUpdate',
   config = function()
+    Core.map({
+      {
+        mode = 'n',
+        key = '<leader>df',
+        action = '<cmd>lua vim.diagnostic.open_float()<cr>',
+        desc = 'lsp diagnostic open float',
+      },
+      {
+        mode = 'n',
+        key = '<leader>dp',
+        action = '<cmd>lua vim.diagnostic.goto_prev()<cr>',
+        desc = 'lsp diagnostic goto prev',
+      },
+      {
+        mode = 'n',
+        key = '<leader>dn',
+        action = '<cmd>lua vim.diagnostic.goto_next()<cr>',
+        desc = 'lsp diagnostic goto next',
+      },
+      {
+        mode = 'n',
+        key = '<leader>ds',
+        action = '<cmd>lua vim.diagnostic.setloclist()<cr>',
+        desc = 'lsp diagnostic set loclist',
+      },
+    })
+
     require("nvim-lsp-installer").setup({
       automatic_installation = true,
       -- automatically detect which servers to install (based on which servers are set up via lspconfig)
@@ -29,37 +56,111 @@ return {
         uninstall_server = "X", -- uninstall server
       },
     })
-  
+
     -- Use an on_attach function to only map the following keys
     -- after the anguage server attaches to the current buffer
-    local on_attach = function(client, bufnr)
+    local on_attach = function(_, bufnr)
       -- Enable completion triggered by <c-x><c-o>
       vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-      local whichkey = require 'which-key'
-      local opt = {
-        mode = 'n',
-        buffer = bufnr,
-      }
-      -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      whichkey.register({
-        ['gd'] = { '<cmd>lua vim.lsp.buf.definition()<CR>', '[lsp] definition' }, -- goto definition
-        ['gD'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', '[lsp] declaration' }, -- goto declaration
-        ['gr'] = { '<cmd>lua vim.lsp.buf.references()<CR>', '[lsp] references' }, -- goto references
-        ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', '[lsp] implementation' }, -- goto implementation
-  
-        ['<leader>hv'] = { '<cmd>lua vim.lsp.buf.hover()<CR>', '[lsp] hover' }, -- hove to display type
-        ['<leader>sh'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', '[lsp] signature help' },
-        ['<leader>wa'] = { 'cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', '[lsp] add workspace folder' },
-        ['<leader>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', '[lsp] remove workspace folder' },
-        ['<leader>wl'] = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', '[lsp] list workspace folders' },
-        ['<leader>td'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', '[lsp] type definition' },
-        ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', '[lsp] rename' },
-        ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', '[lsp] code action' },
-        ['<leader>fm'] = { '<cmd>lua vim.lsp.buf.formatting()<CR>', '[lsp] formatting' },
-      }, opt)
+      Core.map({
+        -- navigator
+        {
+          mode = 'n',
+          key = 'gd',
+          action = '<cmd>lua vim.lsp.buf.definition()<cr>',
+          desc = 'goto definition',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = 'gD',
+          action = '<cmd>lua vim.lsp.buf.declaration()<cr>',
+          desc = 'goto declaration',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = 'gd',
+          action = '<cmd>lua vim.lsp.buf.references()<cr>',
+          desc = 'goto references',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = 'gd',
+          action = '<cmd>lua vim.lsp.buf.implementation()<cr>',
+          desc = 'goto implementation',
+          buffer = bufnr,
+        },
+        -- info
+        {
+          mode = 'n',
+          key = '<leader>hv',
+          action = '<cmd>lua vim.lsp.buf.hover()<cr>',
+          desc = 'hover',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>sh',
+          action = '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+          desc = 'signature help',
+          buffer = bufnr,
+        },
+        -- workspace
+        {
+          mode = 'n',
+          key = '<leader>wa',
+          action = '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>',
+          desc = 'add workspace folder',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>wr',
+          action = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>',
+          desc = 'remove workspace folder',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>wl',
+          action = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folder()))<cr>',
+          desc = 'list workspace folder',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>td',
+          action = '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+          desc = 'type definition',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>rn',
+          action = '<cmd>lua vim.lsp.buf.rename()<cr>',
+          desc = 'rename',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>ca',
+          action = '<cmd>lua vim.lsp.buf.code_action()<cr>',
+          desc = 'code action',
+          buffer = bufnr,
+        },
+        {
+          mode = 'n',
+          key = '<leader>fm',
+          action = '<cmd>lua vim.lsp.buf.formatting()<cr>',
+          desc = 'formatting',
+          buffer = bufnr,
+        },
+      })
     end
-  
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -110,7 +211,7 @@ return {
         }
       }
     end
-  
+
     require 'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all"
       ensure_installed = {
@@ -122,23 +223,23 @@ return {
         "lua",
         "markdown"
       },
-  
+
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
-  
+
       -- List of parsers to ignore installing (for "all")
       -- ignore_install = { "javascript" },
-  
+
       highlight = {
         -- `false` will disable the whole extension
         enable = true,
-  
+
         -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
         -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
         -- the name of the parser)
         -- list of language that will be disabled
         -- disable = { "c", "rust" },
-  
+
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -146,19 +247,19 @@ return {
         additional_vim_regex_highlighting = false,
       },
     }
-  
+
     require "lsp_signature".setup({
       bind = true, -- This is mandatory, otherwise border config won't get registered.
       handler_opts = {
         border = "rounded"
       }
     })
-  
+
     -- vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
     -- vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-   
+
     local border = "single"
-    
+
     -- LSP settings (for overriding per client)
     -- local handlers =  {
     --   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, { border = border}),
@@ -167,14 +268,14 @@ return {
     --   -- ["textDocument/diagnostic"]
     --   -- ["textDocument/diagnostics"]
     -- }
-  
+
     local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
       opts.border = opts.border or border
       return orig_util_open_floating_preview(contents, syntax, opts, ...)
     end
-  
+
     vim.diagnostic.config({
       virtual_text = {
         prefix = '●', -- Could be '●', '▎', 'x'
@@ -189,7 +290,7 @@ return {
       update_in_insert = false,
       severity_sort = false,
     })
-  
+
     local signs = { Error = "", Warn = "", Hint = "", Info = "" }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type

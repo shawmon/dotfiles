@@ -51,7 +51,7 @@ return {
         action = '<nop>',
         desc = 'disable <right>',
       },
-    
+
       -- Insert 模式下使用 Ctrl + hjkl 移动光标
       {
         mode = 'i',
@@ -102,8 +102,8 @@ return {
         action = '<c-w>k',
         desc = 'window up',
       },
-    
-        -- Save & Copy all
+
+      -- Save & Copy all
       {
         mode = 'n',
         key = '<c-s>',
@@ -116,7 +116,7 @@ return {
         action = '<cmd> %y+ <cr>',
         desc = 'copy file',
       },
-      
+
       -- Quick Escape
       {
         mode = 'i',
@@ -128,190 +128,190 @@ return {
 
     Core.set({
       -- Numberline
-       {
-         name = 'number',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'relativenumber',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'numberwidth',
-         value = 2,
-         type = 'option',
-       },
-       {
-         name = 'signcolumn',
-         value = 'yes',
-         type = 'option',
-       },
-       {
-         name = 'wrap',
-         value = true,
-         type = 'option',
-       },
-       -- Indentline
-       {
-         name = 'expandtab',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'autoindent',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'shiftwidth',
-         value = 2,
-         type = 'option',
-       },
-       {
-         name = 'smartindent',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'tabstop',
-         value = 2,
-         type = 'option',
-       },
-       -- Search
-       {
-         name = 'hlsearch',
-         value = false,
-         type = 'option',
-       },
-       {
-         name = 'incsearch',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'ignorecase',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'smartcase',
-         value = true,
-         type = 'option',
-       },
-       -- Cursor
-       {
-         name = 'cursorline',
-         value = false,
-         type = 'option',
-       },
-       {
-         name = 'cursorcolumn',
-         value = false,
-         type = 'option',
-       },
-       {
-         name = 'ruler',	-- 显示光标位置信息
-         value = false,
-         type = 'option',
-       },
-       -- Buffer & Swap
-       {
-         name = 'hidden',	-- 开启隐藏 buffer，在退出 vim 时会提示保存修改
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'updatetime',	-- swap 文件写入硬盘的时间
-         value = 250,
-         type = 'option',
-       },
-    
-       {
-         name = 'mouse',	-- all modes
-         value = 'a',
-         type = 'option',
-       },
-       {
-         name = 'scroll',	-- <C-u>/<C-d> 滚动行数
-         value = 10,
-         type = 'option',
-       },
-       {
-         name = 'shortmess',	-- disable nvim intro
-         value = 'sI',
-         type = 'option',
-         oper = 'append',
-       },
-       {
-         name = 'whichwrap',	-- 行尾用 l 到下一行，行首用 h 到上一行
-         value = '<>[]hl',
-         type = 'option',
-         oper = 'append',
-       },
-    
-       -- Invisible char
-       {
-         name = 'list',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'listchars',
-         value = 'tab:»_,space:⋅,trail:⋅,eol:↴,nbsp:⋅',
-         type = 'option',
-       },
-       -- Dialog & Statusbar & Bottom
-       {
-         name = 'confirm',	 -- use dialog to comfirm
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'laststatus',	 -- global statusbar
-         value = 3,
-         type = 'option',
-       },
-       {
-         name = 'termguicolors',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'showmode',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'showcmd',
-         value = true,
-         type = 'option',
-       },
-        
-       -- Clipboard
-       {
-         name = 'clipboard',	 -- use system clipboard as default register
-         value = 'unnamedplus',
-         type = 'option',
-       },
-       -- Split
-       {
-         name = 'splitbelow',
-         value = true,
-         type = 'option',
-       },
-       {
-         name = 'splitright',
-         value = true,
-         type = 'option',
-       },
-       -- Leader
-       {
-         name = 'mapleader',
-         value = ' ',
-         type = 'variable',
-       },
+      {
+        name = 'number',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'relativenumber',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'numberwidth',
+        value = 2,
+        type = 'option',
+      },
+      {
+        name = 'signcolumn',
+        value = 'yes',
+        type = 'option',
+      },
+      {
+        name = 'wrap',
+        value = true,
+        type = 'option',
+      },
+      -- Indentline
+      {
+        name = 'expandtab',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'autoindent',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'shiftwidth',
+        value = 2,
+        type = 'option',
+      },
+      {
+        name = 'smartindent',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'tabstop',
+        value = 2,
+        type = 'option',
+      },
+      -- Search
+      {
+        name = 'hlsearch',
+        value = false,
+        type = 'option',
+      },
+      {
+        name = 'incsearch',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'ignorecase',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'smartcase',
+        value = true,
+        type = 'option',
+      },
+      -- Cursor
+      {
+        name = 'cursorline',
+        value = false,
+        type = 'option',
+      },
+      {
+        name = 'cursorcolumn',
+        value = false,
+        type = 'option',
+      },
+      {
+        name = 'ruler', -- 显示光标位置信息
+        value = false,
+        type = 'option',
+      },
+      -- Buffer & Swap
+      {
+        name = 'hidden', -- 开启隐藏 buffer，在退出 vim 时会提示保存修改
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'updatetime', -- swap 文件写入硬盘的时间
+        value = 250,
+        type = 'option',
+      },
+
+      {
+        name = 'mouse', -- all modes
+        value = 'a',
+        type = 'option',
+      },
+      {
+        name = 'scroll', -- <C-u>/<C-d> 滚动行数
+        value = 10,
+        type = 'option',
+      },
+      {
+        name = 'shortmess', -- disable nvim intro
+        value = 'sI',
+        type = 'option',
+        oper = 'append',
+      },
+      {
+        name = 'whichwrap', -- 行尾用 l 到下一行，行首用 h 到上一行
+        value = '<>[]hl',
+        type = 'option',
+        oper = 'append',
+      },
+
+      -- Invisible char
+      {
+        name = 'list',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'listchars',
+        value = 'tab:»_,space:⋅,trail:⋅,eol:↴,nbsp:⋅',
+        type = 'option',
+      },
+      -- Dialog & Statusbar & Bottom
+      {
+        name = 'confirm', -- use dialog to comfirm
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'laststatus', -- global statusbar
+        value = 3,
+        type = 'option',
+      },
+      {
+        name = 'termguicolors',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'showmode',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'showcmd',
+        value = true,
+        type = 'option',
+      },
+
+      -- Clipboard
+      {
+        name = 'clipboard', -- use system clipboard as default register
+        value = 'unnamedplus',
+        type = 'option',
+      },
+      -- Split
+      {
+        name = 'splitbelow',
+        value = true,
+        type = 'option',
+      },
+      {
+        name = 'splitright',
+        value = true,
+        type = 'option',
+      },
+      -- Leader
+      {
+        name = 'mapleader',
+        value = ' ',
+        type = 'variable',
+      },
     })
 
     require('packer').init({

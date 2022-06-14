@@ -27,7 +27,7 @@ return {
       },
     })
 
-    require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
+    require 'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
       auto_reload_on_write = true,
       create_in_closed_folder = false,
       disable_netrw = false,
@@ -184,7 +184,7 @@ return {
         },
       },
     } -- END_DEFAULT_OPTS
-  
-    vim.cmd[[highlight NvimTreeFolderIcon guibg=blue]]
+
+    vim.cmd [[highlight NvimTreeFolderIcon guibg=blue]]
   end
 }

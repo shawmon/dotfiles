@@ -32,7 +32,7 @@ return {
       info = "#a0c980",
       error = "#ea6962"
     }
-    require('feline').setup{
+    require('feline').setup {
       theme = colors,
     }
   end,

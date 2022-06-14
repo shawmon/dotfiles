@@ -26,7 +26,7 @@ return {
       },
     })
 
-    require('telescope').setup{
+    require('telescope').setup {
       defaults = {
         -- Default configuration for telescope goes here:
         -- config_key = value,
@@ -56,7 +56,7 @@ return {
         -- please take a look at the readme of the extension you want to configure
       }
     }
-  
+
     -- vim.system[[brew install ripgrep]]
   end
 }

@@ -127,6 +127,12 @@ return {
     })
 
     Core.set({
+      {
+        name = 'number',
+        value = true,
+        type = 'option',
+      },
+      -- },
       -- Numberline
       {
         name = 'number',
@@ -313,6 +319,25 @@ return {
         type = 'variable',
       },
     })
+
+-- " Cursor settings:
+-- "  0 -> terminal default
+-- "  1 -> blinking block
+-- "  2 -> solid block
+-- "  3 -> blinking underscore
+-- "  4 -> solid underscore
+-- "  5 -> blinking vertical bar
+-- "  6 -> solid vertical bar
+-- let &t_SI .= "\<Esc>[5 q"
+-- let &t_SR .= "\<Esc>[3 q"
+-- let &t_EI .= "\<Esc>[2 q"
+-- vim.cmd([[
+-- augroup autocursor
+--   autocmd!
+--   autocmd VimLeave * silent !echo -ne "\033[5 q"
+--   autocmd VimEnter * silent !echo -ne "\033[2 q"
+-- augroup END
+-- ]])
 
     require('packer').init({
       git = { clone_timeout = 60000 },

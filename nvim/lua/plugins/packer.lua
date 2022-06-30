@@ -3,30 +3,30 @@ return {
   config = function()
     Core.map({
       -- Disable arrow
-      {
-        mode = 'n',
-        key = '<up>',
-        action = '<nop>',
-        desc = 'disable <up>',
-      },
-      {
-        mode = 'n',
-        key = '<down>',
-        action = '<nop>',
-        desc = 'disable <down>',
-      },
-      {
-        mode = 'n',
-        key = '<left>',
-        action = '<nop>',
-        desc = 'disable <left>',
-      },
-      {
-        mode = 'n',
-        key = '<right>',
-        action = '<nop>',
-        desc = 'disable <right>',
-      },
+      -- {
+      --   mode = 'n',
+      --   key = '<up>',
+      --   action = '<nop>',
+      --   desc = 'disable <up>',
+      -- },
+      -- {
+      --   mode = 'n',
+      --   key = '<down>',
+      --   action = '<nop>',
+      --   desc = 'disable <down>',
+      -- },
+      -- {
+      --   mode = 'n',
+      --   key = '<left>',
+      --   action = '<nop>',
+      --   desc = 'disable <left>',
+      -- },
+      -- {
+      --   mode = 'n',
+      --   key = '<right>',
+      --   action = '<nop>',
+      --   desc = 'disable <right>',
+      -- },
       {
         mode = 'i',
         key = '<up>',
@@ -101,6 +101,31 @@ return {
         key = '<c-k>',
         action = '<c-w>k',
         desc = 'window up',
+      },
+      -- Using Arrow key to resize window
+      {
+        mode = 'n',
+        key = '<up>',
+        action = '<cmd> resize +5<cr>',
+        desc = 'window resize up',
+      },
+      {
+        mode = 'n',
+        key = '<down>',
+        action = '<cmd> resize -5<cr>',
+        desc = 'window resize down',
+      },
+      {
+        mode = 'n',
+        key = '<left>',
+        action = '<cmd> vertical resize -5<cr>',
+        desc = 'window resize left',
+      },
+      {
+        mode = 'n',
+        key = '<right>',
+        action = '<cmd> vertical resize +5<cr>',
+        desc = 'window resize right',
       },
 
       -- Save & Copy all

@@ -17,8 +17,8 @@ return {
     Core.map({
       {
         mode = 'n',
-        key = '<c-p>',
-        action = '<cmd> MarkdownPreviewToggle',
+        key = '<leader>mm',
+        action = '<cmd> MarkdownPreviewToggle<cr>',
         desc = 'toggle markdown preview',
       }
     })

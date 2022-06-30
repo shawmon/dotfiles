@@ -15,13 +15,13 @@ return {
     Core.map({
       {
         mode = 'n',
-        key = '<c-b>',
+        key = '<leader>tt',
         action = '<cmd> NvimTreeToggle <cr>',
         desc = 'toggle nvimtree',
       },
       {
         mode = 'n',
-        key = '<c-b>',
+        key = '<leade>tf',
         action = '<cmd> NvimTreeRefresh <cr>',
         desc = 'refresh nvimtree',
       },
